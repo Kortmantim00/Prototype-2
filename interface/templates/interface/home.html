@@ -1,0 +1,67 @@
+{% extends 'interface/base.html' %}
+
+{% block title %}Interface Home{% endblock %}
+
+{% block sidebar %}
+<h2>Controls</h2>
+
+<form id="dicom-upload-form" enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+  <label for="dicom-files">DICOM:</label>
+  <input type="file" id="dicom-files" name="dicom_file" multiple /><br>
+  <button type="submit" id="visualize-dicom-btn">Visualiseer DICOM</button>
+</form>
+
+<form id="nifti-upload-form" enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+  <label for="nifti-file">NIFTI:</label>
+  <input type="file" id="nifti-file" name="nifti_file"><br>
+  <button type="submit" id="visualize-nifti-btn">Visualiseer NIFTI</button>
+</form>
+
+<br><br>
+<button type="button" id="reset-viewer-btn">Reset Viewer</button>
+
+<br><br><br>
+
+<button type="button" id="run-algo1">Run Segmentation Algorithm</button><br> 
+<button type="button" id="run-algo2">Run Landmark Algorithm</button><br>
+<button type="button" id="run-algo3">Run Cephalometric Algorithm</button><br>
+<button type="button" id="run-algo4">Run LeFort Algorithm</button><br>
+{% endblock %}
+
+{% block viewer %}
+<div class="viewer-grid">
+  <div class="viewer-cell" id="viewer-3d">
+    <div class="viewer-label">3D</div>
+    <div class="viewer-content"></div>
+  </div>
+  <div class="viewer-cell" id="viewer-axial">
+    <div class="viewer-label">Axial</div>
+    <div class="viewer-content"></div>
+  </div>
+  <div class="viewer-cell" id="viewer-coronal">
+    <div class="viewer-label">Coronal</div>
+    <div class="viewer-content"></div>
+  </div>
+  <div class="viewer-cell" id="viewer-sagittal">
+    <div class="viewer-label">Sagittal</div>
+    <div class="viewer-content"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block results %}
+ <h2>Results </h2>
+    <div id="result-container">
+        <ul id="result-list">
+            <li>No results.</li>
+        </ul>
+    </div><br><br><br><br><br><br><br><br><br>
+    <h2>Log </h2>
+    <div id="log-container">
+        <ul id="log-list">
+            <li>Logboek is leeg.</li>
+        </ul>
+    </div>
+{% endblock %}
